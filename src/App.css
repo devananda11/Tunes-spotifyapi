@@ -1,0 +1,154 @@
+/* App.css */
+
+/* General body styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #121212; /* Dark background for the app */
+  color: #e0e0e0; /* Light text color for readability */
+}
+
+/* Container for each item */
+.item-container {
+  display: flex;
+  align-items: center;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image styling */
+.item-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Content area styling */
+.item-content {
+  flex: 1;
+}
+
+/* Title and artist name styling */
+.item-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #e0e0e0;
+}
+
+.item-artist {
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.item-album {
+  font-size: 12px;
+  color: #a0a0a0;
+}
+
+/* Navbar styling */
+nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+nav .flex {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .text-green-300 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav .lg\\:flex {
+  display: flex;
+  align-items: center;
+}
+
+nav .py-2 {
+  padding: 5px 10px;
+}
+
+nav .bg-gradient-to-r {
+  background: linear-gradient(90deg, #48c774, #29b6f6);
+}
+
+nav .bg-gradient-to-r:hover {
+  background: linear-gradient(90deg, #40c4ff, #00bcd4);
+}
+
+nav button {
+  background: linear-gradient(90deg, #48c774, #29b6f6);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: linear-gradient(90deg, #40c4ff, #00bcd4);
+}
+
+/* Main container styling */
+.app-container {
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 20px;
+  color: #e0e0e0;
+}
+
+/* Form and button styling */
+form {
+  display: inline-block;
+  text-align: left;
+}
+
+select, button {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+}
+
+select {
+  border: 1px solid #333;
+  background: #1f1f1f;
+  color: #e0e0e0;
+}
+
+button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+/* Center the rendered data */
+.data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.data-container p {
+  color: #e0e0e0;
+}
