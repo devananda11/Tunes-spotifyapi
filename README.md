@@ -1,4 +1,5 @@
 # Tunes
 
--This is a project made using Spotify api to display a users top tracks and artists on Spotify.
--The user can also filter out the data based on the time range i.e Last 6 months, Last 4 weeks and All time.
+Tunes is a web application that leverages the Spotify API to display a user's top tracks and artists on Spotify. This project allows users to explore their musical preferences by filtering data based on different time ranges, including "Last 4 Weeks," "Last 6 Months," and "All Time."
+
+
