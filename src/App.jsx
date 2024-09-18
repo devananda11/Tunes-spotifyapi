@@ -80,7 +80,7 @@ function App() {
         }
 
         if (data.length === 0) {
-            return <p className="text-white">No data available for the selected time range.</p>;
+            return <p className="text-white text-center">Nothing to display</p>;
         }
 
         return data.map(item => (
@@ -137,21 +137,7 @@ function App() {
             <div className="max-w-4xl mx-auto px-4 py-6">
                 <header className="text-center mb-6">
                     
-                    {!token ? (
-                        <a
-                            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}
-                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition-colors"
-                        >
-                            Login to Spotify
-                        </a>
-                    ) : (
-                        <button
-                            onClick={logout}
-                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-colors"
-                        >
-                            Logout
-                        </button>
-                    )}
+                   
 
                     {token && (
                         <form onSubmit={searchTopItems} className="mt-6">
