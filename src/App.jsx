@@ -8,13 +8,13 @@ function App() {
     const RESPONSE_TYPE = import.meta.env.VITE_SPOTIFY_RESPONSE_TYPE;
     const SCOPES = import.meta.env.VITE_SPOTIFY_SCOPES;
 
-
     const [token, setToken] = useState("");
     const [data, setData] = useState([]); // For both tracks and artists
     const [type, setType] = useState('tracks'); // Default type is tracks
     const [timeRange, setTimeRange] = useState('medium_term'); // Default time range
     const [loading, setLoading] = useState(false); // Loading state
     const [error, setError] = useState(""); // Error state
+    const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
     useEffect(() => {
         const hash = window.location.hash;
@@ -51,7 +51,6 @@ function App() {
             if (data.items.length > 0) {
                 setData(data.items);
             } else {
-                setData([]); // Ensure data is cleared
                 setError(`No top ${type} data available for the selected time range.`);
             }
         } catch (error) {
@@ -76,15 +75,15 @@ function App() {
         if (loading) {
             return <p className="text-white">Loading...</p>;
         }
-    
+
         if (error) {
             return <p className="text-red-500">{error}</p>;
         }
-    
+
         if (data.length === 0) {
             return <p className="text-white text-center">Nothing to display</p>;
         }
-    
+
         return data.map((item, index) => (
             <div key={item.id} className="flex items-center bg-gray-800 p-4 rounded-lg shadow-lg mb-4 max-w-lg mx-auto">
                 <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-white font-bold bg-gray-700 rounded-full mr-4">
@@ -113,7 +112,6 @@ function App() {
             </div>
         ));
     };
-    
 
     return (
         <div className="bg-gray-900 min-h-screen text-gray-200">
@@ -121,30 +119,59 @@ function App() {
                 <div className="max-w-6xl mx-auto flex items-center justify-between">
                     <p className="text-2xl text-green-300 font-bold">Tunes</p>
                     <div className="hidden lg:flex items-center space-x-4">
-                        <div className="py-2 px-4 bg-gray-700 rounded-md">Dark Mode</div>
-                          {!token ? (
-                        <a
-                            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}
-                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition-colors"
-                        >
-                            Login to Spotify
-                        </a>
-                    ) : (
-                        <button
-                            onClick={logout}
-                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full transition-colors"
-                        >
-                            Logout
+                        <div className="cursor-pointer text-white">Dark Mode</div>
+                        {!token ? (
+                            <a
+                                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}
+                                className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full transition-colors"
+                            >
+                                Login to Spotify
+                            </a>
+                        ) : (
+                            <button
+                                onClick={logout}
+                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full transition-colors"
+                            >
+                                Logout
+                            </button>
+                        )}
+                    </div>
+                    <div className="lg:hidden md:flex flex-col justify-end">
+                        <button onClick={() => setMobileDrawerOpen(!mobileDrawerOpen)}>
+                            {mobileDrawerOpen ? "X" : "="}
                         </button>
-                    )}
                     </div>
                 </div>
+                {mobileDrawerOpen && (
+                    <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden">
+                        <ul>
+                            <li className="py-4 text-center"><a href="#top-tracks">Dark Mode</a></li>
+                            <li className="py-4"><a >
+                                {!token ? (
+                            <a
+                                href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPES}`}
+                                className="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full transition-colors"
+                            >
+                                Login to Spotify
+                            </a>
+                        ) : (
+                            <button
+                                onClick={logout}
+                                className="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full transition-colors"
+                            >
+                                Logout
+                            </button>
+                        )}
+                            </a>
+
+                            </li>
+                            {/* Add more nav items if needed */}
+                        </ul>
+                    </div>
+                )}
             </nav>
             <div className="max-w-4xl mx-auto px-4 py-6">
                 <header className="text-center mb-6">
-                    
-                   
-
                     {token && (
                         <form onSubmit={searchTopItems} className="mt-6">
                             <div className="mb-4">
